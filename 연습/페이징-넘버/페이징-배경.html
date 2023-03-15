@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      transition: all 2.5s ease;
+    }
+    h1 {
+      font-size: 50px;
+      font-weight: bold;
+    }
+    button {
+      font-size: 20px;
+      padding: 10px 30px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    window.onload = function(){
+      let prevBtn = document.querySelector(".prevBtn");
+      let NextBtn = document.querySelector(".NextBtn");
+      let h1 = document.getElementsByTagName("h1")[0];
+      let boColor = ["#85FFBD", "#FFFB7D", "#E0C3FC", "#00DBDE"];
+      let body = document.getElementsByTagName("body")[0];
+
+      let totalNum = boColor.length;
+      let pageRandom = Math.round(Math.random()*totalNum-1);
+
+      prevBtn.addEventListener("click", function(){
+        if(pageRandom > 0){
+          pageRandom--;
+        } else {
+          pageRandom = totalNum-1;
+        }
+        bgColorChange();
+      })
+      NextBtn.addEventListener("click", function(){
+        if(pageRandom < totalNum-1){
+          pageRandom++;
+        } else {
+          pageRandom = 0;
+        }
+        bgColorChange();
+      })
+
+      function bgColorChange() {
+        h1.innerHTML = pageRandom + " 페이지 입니다.";
+        body.style.background = boColor[pageRandom];
+      }
+      bgColorChange();
+    }
+  </script>
+  <button class="prevBtn">PREV</button>
+  <button class="NextBtn">NEXT</button>
+  <h1></h1>
+</body>
+</html>
